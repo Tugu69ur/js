@@ -12,9 +12,42 @@ const appendCharacter = (char) => {
 
 const calculate = () => {
   let expression = document.getElementById("display").value;
-  try {
-    document.getElementById("display").value = eval(expression);
-  } catch {
-    document.getElementById("display").value = "Error";
+  let operator;
+  let result;
+
+  if (expression.includes("+")) {
+    operator = "+";
+  } else if (expression.includes("-")) {
+    operator = "-";
+  } else if (expression.includes("*")) {
+    operator = "*";
+  } else if (expression.includes("/")) {
+    operator = "/";
+  } else {
+    alert("Invalid expression");
+    return;
   }
+
+  let int = expression.split(operator);
+  let int1 = parseFloat(int[0]); 
+  let int2 = parseFloat(int[1]);
+  switch (operator) {
+    case "+":
+      result = int1 + int2;
+      break;
+    case "-":
+      result = int1 - int2;
+      break;
+    case "*":
+      result = int1 * int2;
+      break;
+    case "/":
+      result = int1 / int2;
+      break;
+    default:
+      alert("Invalid operator");
+      return;
+  }
+
+  document.getElementById("display").value = result;
 };
